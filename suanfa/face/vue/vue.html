@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div id="app">
+        <h1>{{song}}</h1>
+        <!-- <h1>{{song1}}</h1> -->
+        <!-- <p>《{{album.name}}》是{{singer}}2005年11月发行的专辑</p>
+        <p>主打歌曲为{{album.theme}}</p>
+        {{singer}}{{song}}
+        <pre>{{list}}</pre>
+        <div>{{all}}</div>
+        <input v-model="singer" /> -->
+    </div>
+</body>
+</html>
+    <script src="./vue2.js"></script>
+    <script>
+        let vue = new Vue({
+        el: '#app',
+        data: {     // Object.defineProperty(obj, 'song', '发如雪');
+            song: '发如雪',
+            // song1: '发如雪1',
+            // album: {
+            //     name: '十一月的萧邦',
+            //     theme: '夜曲'
+            // },
+            // singer: '周杰伦',
+            // list: ['听妈妈的话', '夜的第七章', '麦芽糖']
+        },
+        methods: {
+            clickMe() {
+                alert(1);
+            }
+        },
+        // computed可以缓存 只是把数据挂在了vm上
+        computed: {
+            // all() {
+            //     return this.song + '是一首中国风的歌曲,发表于' + this.album.name;
+            // },
+            // noop() {
+            // }
+        },
+        mounted() {
+            this.song = "hahah"
+            // setTimeout(() => {
+            //     // 不能响应数组长度的变化和直接索引修改值
+            //     vue.list[2] = '你听得到';
+            //     vue.list.push('我不配');
+            //     console.log(vue)
+            // }, 1000)
+        }
+    });
+    </script>
+    <!-- <script>
+document.addEventListener('DOMContentLoaded', function(){
+    let opt = {el:'#app', data:{name:'检索中...', age:30}}
+    let vm = new Vue(opt)
+    setTimeout(() => {
+        opt.data.name = '王永峰'
+    }, 2000);
+}, false)
+// class Vue{
+//     constructor(opt){
+//         this.opt = opt
+//         this.observe(opt.data)
+//         let root = document.querySelector(opt.el)
+//         this.compile(root)
+//     }
+//     // 为响应式对象 data 里的每一个 key 绑定一个观察者对象
+//     observe(data){ 
+//         Object.keys(data).forEach(key => {
+//             let obv = new Observer() 
+//             data["_"+key] = data[key]
+//             // 通过 getter setter 暴露 for 循环中作用域下的 obv，闭包产生
+//             Object.defineProperty(data, key, {
+//                 get() {
+//                     Observer.target && obv.addSubNode(Observer.target);
+//                     console.log(Observer.target)
+//                     console.log(obv.subNode)
+//                     return data['_'+key]
+//                 }, 
+//                 set(newVal) {
+//                     obv.update(newVal)
+//                     data['_'+key] = newVal
+//                 }
+//             })
+//         })
+//     }
+//     // 初始化页面，遍历 DOM，收集每一个key变化时，随之调整的位置，以观察者方法存放起来    
+//     compile(node){
+//         [].forEach.call(node.childNodes, child =>{
+//             if(!child.firstElementChild && /\{\{(.*)\}\}/.test(child.innerHTML)){
+//                 let key = RegExp.$1.trim()
+//                 child.innerHTML = child.innerHTML.replace(new RegExp('\\{\\{\\s*'+ key +'\\s*\\}\\}', 'gm'),this.opt.data[key]) 
+//                 Observer.target = child
+//                 this.opt.data[key]  // 获取一次；
+//                 Observer.target = null
+//             }
+//             else if (child.firstElementChild) {
+//                 this.compile(child)
+//             }
+//         })
+//     }    
+// }
+// 常规观察者类
+// class Observer{
+//     constructor(){
+//         this.subNode = []    
+//     }
+//     addSubNode(node){
+//         this.subNode.push(node)
+//     }
+//     update(newVal){
+//         this.subNode.forEach(node=>{ // 子模块
+//             node.innerHTML = newVal
+//         })
+//     }
+// }
+</script> -->

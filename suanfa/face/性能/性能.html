@@ -1,0 +1,94 @@
+<html>
+<head>
+</head>
+<body>
+<!- Main page body goes from here. -->
+<!-- <script type="text/javascript">
+    function onLoad() {
+        let timing = performance.timing,
+        start = timing.navigationStart,
+        dnsTime = 0,
+        tcpTime = 0,
+        firstPaintTime = 0,
+        domRenderTime = 0,
+        loadTime = 0;
+    
+            dnsTime = timing.domainLookupEnd - timing.domainLookupStart;
+            tcpTime = timing.connectEnd - timing.connectStart;
+            firstPaintTime = timing.responseStart - start;
+            domRenderTime = timing.domContentLoadedEventEnd - start;
+            loadTime = timing.loadEventEnd - start;
+    
+    console.log('DNS解析时间:', dnsTime , '\nTCP建立时间:', tcpTime, '\n首屏时间:', firstPaintTime,
+     '\ndom渲染完成时间:', domRenderTime, '\n页面onload时间:', loadTime);
+    }
+    </script> -->
+<!-- <script>
+    function getsec(time) {
+      return time + 'ms'
+    }
+    window.onload = function () {
+      var per = window.performance.timing;
+      console.log('DNS查询耗时' + getsec(per.domainLookupEnd - per.domainLookupStart))
+      console.log('TCP链接耗时' + getsec(per.connectEnd - per.connectStart))
+      console.log('request请求响应耗时' + getsec(per.responseEnd - per.responseStart))
+      console.log('dom渲染耗时' + getsec(per.domComplete - per.domInteractive))
+      console.log('白屏时间' + getsec(per.responseStart - per.navigationStart))
+      console.log('domready可操作时间' + getsec(per.domContentLoadedEventEnd - per.fetchStart))
+    }
+</script> -->
+
+<script>
+    // MutationObserver
+  ;
+(function() {
+
+    handleAddListener('load', getTiming)
+
+    function handleAddListener(type, fn) {
+        if(window.addEventListener) {
+            window.addEventListener(type, fn)
+        } else {
+            window.attachEvent('on' + type, fn)
+        }
+    }
+
+    function getTiming() {
+        try {
+            var time = performance.timing;
+            var timingObj = {};
+
+            var loadTime = (time.loadEventEnd - time.loadEventStart) / 1000;
+
+            if(loadTime < 0) {
+                setTimeout(function() {
+                    getTiming();
+                }, 200);
+                return;
+            }
+
+            timingObj['重定向时间'] = (time.redirectEnd - time.redirectStart) / 1000;
+            timingObj['DNS解析时间'] = (time.domainLookupEnd - time.domainLookupStart) / 1000;
+            timingObj['TCP完成握手时间'] = (time.connectEnd - time.connectStart) / 1000;
+            timingObj['HTTP请求响应完成时间'] = (time.responseEnd - time.requestStart) / 1000;
+            timingObj['DOM开始加载前所花费时间'] = (time.responseEnd - time.navigationStart) / 1000;
+            timingObj['DOM加载完成时间'] = (time.domComplete - time.domLoading) / 1000;
+            timingObj['DOM结构解析完成时间'] = (time.domInteractive - time.domLoading) / 1000;
+            timingObj['脚本加载时间'] = (time.domContentLoadedEventEnd - time.domContentLoadedEventStart) / 1000;
+            timingObj['onload事件时间'] = (time.loadEventEnd - time.loadEventStart) / 1000;
+            timingObj['页面完全加载时间'] = (timingObj['重定向时间'] + timingObj['DNS解析时间'] + timingObj['TCP完成握手时间'] + timingObj['HTTP请求响应完成时间'] + timingObj['DOM结构解析完成时间'] + timingObj['DOM加载完成时间']);
+
+            for(item in timingObj) {
+                console.log(item + ":" + timingObj[item] + '毫秒(ms)');
+            }
+            console.log(performance.timing);
+        } catch(e) {
+            console.log(timingObj)
+            console.log(performance.timing);
+        }
+    }
+})();
+</script>
+    
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!--
+ * @Author: zhouchangping
+ * @Date: 2022-03-07 16:37:56
+ * @LastEditTime: 2022-03-07 17:10:03
+ * @LastEditors: zhouzhou
+ * @Description: 
+ * @FilePath: /reactVue/suanfa/face/css/css开光.html
+ * 可以输入预定的版权声明、个性签名、空行等
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .name {
+
+    }
+    .button {
+    height: 20px;
+    position: absolute;
+    background: #f5f5f5;
+    padding-right: 20px;
+   }
+   .button:before {
+     content: 'aa'; /* button宽度 */
+     display: inline-block;
+     width: 100%;
+     height: 20px;
+     background: #fff;
+     color: #fff;
+     position: relative; /* 撑开父元素，相对于absolute定位*/
+     left: 2px;
+     transition: left .5s;
+     transform: rotate(90deg);
+   }
+   .button:hover {
+    background: green;
+    color: green;
+   }
+   .button:hover:before {
+     left: 25px;
+   }
+  </style>
+</head>
+<body>
+  <div class="name">123</div>
+  <div class="button">
+
+  </div>
+</body>
+</html>
