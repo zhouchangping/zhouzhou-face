@@ -1,2 +1,0 @@
-# readMds
-For reading notes
