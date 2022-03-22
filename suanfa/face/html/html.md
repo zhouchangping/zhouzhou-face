@@ -86,7 +86,7 @@
 
 ## html布局元素的分类有哪些
 + 内联元素 textarea span i a b strong em br input 
-+ 块状元素: div ol ul dl h p from li 
++ 块状元素: div,h1-h6,hr,menu,ol,ul,li,dl,table,p,from
 + 内联块状元素
 
 ## html5新元素
@@ -115,7 +115,10 @@
   + 结构合理，语义化表签
 + 大量dom的优化
   + 缓存dom对象
-  + 文档片段：document.createDocumentFragment()方法，文档碎片节点，虚拟节点。 
+  + 文档片段：document.createDocumentFragment()方法，文档碎片节点，虚拟节点。  document.createDocumentFragment
+    + requestAnimationFrame: 
+      + 该方法需要传入一个回调函数作为参数，该回调函数会在浏览器下一次重绘之前执行
+      + requestAnimationFrame() 运行在后台标签页或者隐藏的<iframe> 里时，requestAnimationFrame() 会被暂停调用以提升性能和电池寿命
   + cloneNode 复制
 + 用innerHtml替代高频的appendChild
 + 最优化的layout方案
@@ -130,7 +133,7 @@
 + render tree -> layout -> painting -> composite layers（合并图层输出到页面屏幕）
 + transform: renderLayers(渲染合成层)-> 独立的graphicsLayers(绘图层,有一个独立的graphics context,其对应的renderLayers会pait进graphics context中）->compositor（合成器）会将由graphics context输出的位图合并到屏幕。
 
-## 浏览器解析渲染页面(layout(布局、回流)、painting(渲染、绘制、重绘)、渲染层、合成层、位图、纹理、gpu、gpu合并位图)
+## 浏览器解析渲染页面(layout(布局、回流)、painting(渲染、绘制、重绘)、渲染层、合成层、位图、纹理、gpu、gpu合并位图)https://blog.csdn.net/wangfeijiu/article/details/106651592
 + DOM Tree：浏览器将HTML解析成树形的数据结构。(https://segmentfault.com/a/1190000014520786)
 + CSS Rule Tree：浏览器将CSS解析成树形的数据结构。
 + Render Tree: DOM和CSSOM合并后生成Render Tree。
@@ -283,7 +286,11 @@
 
 ```
 
-## 浏览器线程
+## 进程(https://blog.csdn.net/wangfeijiu/article/details/106563082)
++ brower进程
++ render进程
+  
+## 浏览器线程(render进场)
 + GUI 渲染线程
 + JS 线程
 + 定时器触发线程 (setTimeout)
@@ -340,3 +347,5 @@
 + flex/grid与margin:auto(最简单写法)
 + JavaScript
 + display:table-cell
+
+## requestIdleCallback和requestAnimationFrame详解(https://www.jianshu.com/p/2771cb695c81?tt_from=weixin)
