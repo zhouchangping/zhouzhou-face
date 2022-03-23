@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS: 实现两栏布局，左边固定，右边自适应的4种方法</title>
+  <style>
+    /*float+ margin */
+    .parent {
+      margin: 0 auto;
+    }
+    .left {
+      float: left;
+      width: 200px;
+      background-color: green;
+    }
+    .right {
+      margin-left: 200px;
+      background-color: yellow;
+    }
+
+    /*position+ margin */
+    .parent1 {
+      margin: 0 auto;
+    }
+    .left1 {
+      position: absolute;
+      left: 0;
+      width: 200px;
+      background-color: green;
+    }
+    .right1 {
+      margin-left: 200px;
+      background-color: yellow;
+    }
+
+    /*float+ overflow : BFC的区域不会与float box重叠,BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此*/
+    .parent2 {
+      margin: 0 auto;
+    }
+    .left2 {
+      float: left;
+      width: 200px;
+      background-color: green;
+    }
+    .right2 {
+      overflow: hidden;
+      background-color: yellow;
+    }
+
+    /*flex */
+    .parent3 {
+      margin: 0 auto;
+      display: flex;
+    }
+    .left3 {
+      width: 200px;
+      background-color: green;
+    }
+    .right3 {
+      flex: 1;
+      background-color: yellow;
+    }
+
+    /* right在前面*/
+    .container  {
+      display:flex;
+      flex-direction:row-reverse;
+    }
+
+    .lefts {
+      width:200px;
+      height:500px;
+      background-color: red;
+    }
+
+    .rights {
+      flex:1;
+      height:500px;
+      background-color: blue
+    }
+
+    .container1 {
+        /* position: relative; // 这句一定要，定位以祖宗中第一个非static为准进行绝对定位 */
+        position: relative;
+
+    }
+    .lefts1 {
+        width: 200px;
+        height: 300px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color:red;
+    }
+    .rights1 {
+        padding-left: 200px;
+        width: 100%;
+        height: 300px;
+        background:blue
+    }
+
+  </style>
+</head>
+<body>
+  <div class="parent"> 
+    <div class="left"> 
+    <p>left left left left</p> 
+    </div> 
+    <div class="right"> 
+    <p>right</p> 
+    <p>right</p> 
+    </div> 
+  </div> 
+  <div class="parent1"> 
+    <div class="left1"> 
+    <p>left left left left</p> 
+    </div> 
+    <div class="right1"> 
+    <p>right</p> 
+    <p>right</p> 
+    </div> 
+  </div> 
+
+  <div class="parent2"> 
+    <div class="left2"> 
+    <p>left left left left</p> 
+    </div> 
+    <div class="right2"> 
+    <p>right</p> 
+    <p>right</p> 
+    </div> 
+  </div> 
+
+  <div class="parent3"> 
+    <div class="left3"> 
+    <p>left left left left</p> 
+    </div> 
+    <div class="right3"> 
+    <p>right</p> 
+    <p>right</p> 
+    </div> 
+  </div> 
+
+  <div class='container'>
+    <div class='rights'></div>
+    <div class='lefts'></div>
+  </div>
+  <div class='container1'>
+    <div class='rights1'></div>
+    <div class='lefts1'></div>
+  </div>
+</body>
+</html>
