@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bfc</title>
+  <style>
+    /*https://segmentfault.com/a/11900000095457428？
+    /* 清除浮动*/
+    .wrap {
+      border: 2px solid yellow;
+      width: 250px;
+      overflow: hidden;
+    }
+    section {
+      background-color: pink;
+      float: left;
+      width: 100px;
+      height: 100px;
+    }
+
+    /*自适应两栏布局*/
+    div {width: 200px;}
+    aside {
+      background-color: yellow;
+      float: left;
+      width: 100px;
+      height: 50px;
+    }
+    main {
+      overflow: hidden;
+      background-color: pink;
+    }
+
+    /*防止margin合并 */
+    .wrap-1 {
+      overflow: hidden;
+    }
+    section {
+      display: block;
+      background-color: pink;
+      margin-bottom: 100px;
+      width: 200px;
+      height: 200px;
+    }
+    .bottom {
+      margin-top: 100px;
+    }
+  </style>
+</head>
+<body>
+  <!-- <div class="wrap">
+    <section>1</section>
+    <section>2</section>
+  </div>
+
+  <div>
+    <aside></aside>
+    <main>我是好多好多文字会换行的那种蛤蛤蛤蛤蛤蛤蛤蛤蛤蛤蛤蛤蛤</main>
+  </div> -->
+  <div>
+    <section class="top">1</section>
+    <div class="wrap-1">
+      <section class="bottom">2</section>
+    </div>
+  </div>
+  <div>2</div>
+  <section class="top">
+    <div>213</div>
+  </section>
+  <section class="bottom"><div>34534</div></section>
+  <section class="top">1</section>
+  <section class="bottom">2</section>
+</body>
+</html>
