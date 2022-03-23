@@ -271,7 +271,7 @@ WebSocket和HTTP都是应用层协议，都基于 TCP 协议。但是 WebSocket 
 
 ## 浏览器多个标签页之间的通信(https://juejin.im/post/5b0d0a3cf265da092767917f)
 
-## 你应该知道的requestIdleCallback https://juejin.im/post/5ad71f39f265da239f07e862
+## 你应该知道的requestIdleCallback https://juejin.im/post/5ad71f39f265da239f07e862(https://www.jianshu.com/p/2771cb695c81?tt_from=weixin)
 
 ## js原生（http://www.runoob.com/jsref/dom-obj-document.html）
 
@@ -438,8 +438,6 @@ tieba.baidu.com 二级域名
 ## canvas常见的性能优化方法
 
 ## 一个无侵入的pv上报sdk如何实现
-
-## requestIdleCallback： https://juejin.im/post/6844903592831238157
 
 ## 函数对象和普通对象(https://juejin.cn/post/6844903984335945736)
 + 所有 Function 的实例都是函数对象，其他的均为普通对象，其中包括 Function 实例的实例。typpeof new Function ({}) === function
