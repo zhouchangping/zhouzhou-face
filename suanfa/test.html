@@ -484,17 +484,32 @@
 //   return arr;
 // }
 
-
-window.onload = function () {
-  var adiv = document.getElementById("div");
-  var root = adiv.webkitCreateShadowRoot();
-  var shadowImag = document.createElement("img");
-  shadowImag.src = 'apic.png';
-  root.appdendChild(shadowImag);
-  var shadowDiv = document.createElement("div");
-  shadowDiv.innerHTML = "this is a div from shadow dom";
-  root.appdendChild(shadowDiv)
+var reverList =  function (head) {
+  let current = head;
+  let prev = null
+  while (current) {
+    let next = current.next;
+    current.next = prev;
+    prev = current;
+    current = next;
+  }
+  return prev;
 }
+
+var long = function (s) {
+  let map = new Map();
+  let re = 0;
+  for (let i = 0, j = 0; j < s.length; j++) {
+    if (map.has(s[j])) {
+      i = Math.max(i, map.get(s[j]) + 1); // 0 + 1 = 2 2
+    }
+    map.set(s[j], j)
+    re = Math.max(re, j - i + 1); // 3 - 2 + 1 = 2 3
+  }
+  return re;
+}
+01234
+abcbda
   </script>
 </body>
 

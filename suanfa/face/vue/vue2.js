@@ -25,7 +25,7 @@ function Vue(options = {}) {
   // 编译
   new Compile(options.el, this);
   // 所有事情处理好后执行mounted钩子函数
-  options.mounted.call(this);
+  // options.mounted.call(this);
 }
 
 function initComputed() {   // 具有缓存功能的
@@ -44,7 +44,7 @@ function initComputed() {   // 具有缓存功能的
 // 这里写数据劫持的主要逻辑
 function Observe(data) {
   let dep = new Dep();
-  console.log(data)
+  // console.log(data)
   // 把data属性通过defineProperty的方式定义属性
   for (let key in data) {
       let val = data[key];
@@ -52,13 +52,12 @@ function Observe(data) {
       Object.defineProperty(data, key, {
           enumerable: true,
           get() {
-              // console.log(Dep.target)
+              console.log(Dep.target)
               Dep.target && dep.addSub(Dep.target);   // [watcher]
-              // console.log(val)
               return val;
           },
           set(newVal) {
-            console.log(newVal)
+            // console.log(newVal)
               if (val === newVal) {
                   return;
               }
@@ -109,10 +108,10 @@ function Compile(el, vm) {
               !function replaceTxt() {
                 // console.log(1)
                   node.textContent = txt.replace(reg, (matched, placeholder) => {
-                      console.log(placeholder);   // 匹配到的分组 如：song, album.name, singer...
+                      // console.log(placeholder);   // 匹配到的分组 如：song, album.name, singer...
                       new Watcher(vm, placeholder, replaceTxt);  // 监听变化，重新进行匹配替换内容
                       return placeholder.split('.').reduce((val, key) => {
-                        console.log(val[key])
+                        // console.log(val[key])
                           return val[key];
                       }, vm);
                   });
@@ -132,7 +131,7 @@ function Compile(el, vm) {
                   });
                   node.addEventListener('input', function (e) {
                       let newVal = e.target.value;
-                      console.log(newVal);
+                      // console.log(newVal);
                       vm[exp] = newVal;
                   });
               });
@@ -156,10 +155,10 @@ function Dep() {
 
 Dep.prototype.addSub = function (sub) {
   this.subs.push(sub);
-  console.log(this.subs)
+  // console.log(this.subs)
 };
 Dep.prototype.notify = function () {
-  console.log(456)
+  // console.log(456)
   this.subs.forEach(sub => sub.update());
 };
 
@@ -171,10 +170,11 @@ function Watcher(vm, exp, fn) {
   this.exp = exp; // 添加到订阅中,  this.song
   Dep.target = this;
   let val = vm;
-  // console.log(val)
+  console.log('--------watcher')
   let arr = exp.split('.');
+  console.log('--------watcher', arr)
   arr.forEach(key => {
-    console.log(key)
+    // console.log(key)
       val = val[key];
       console.log(val)
   });
