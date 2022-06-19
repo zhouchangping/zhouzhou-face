@@ -127,7 +127,7 @@ function Compile(el, vm) {
                       node.value = vm[exp];
                   }
                   new Watcher(vm, exp, function (newVal) {
-                      node.value = newVal;    // 当watcher触发时会自动将内容放进输入框中
+                       .value = newVal;    // 当watcher触发时会自动将内容放进输入框中
                   });
                   node.addEventListener('input', function (e) {
                       let newVal = e.target.value;
